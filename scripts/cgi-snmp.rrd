@@ -1,0 +1,109 @@
+#!/usr/bin/rrdcgi
+<html>
+<head>
+<title>Current statistic</title>
+<meta http-equiv="Refresh" content="60">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Cache-Control" content="no-cache">
+</head>
+<body>
+<h2>Текущая статистика:</h2>
+<table>
+<tr><th>Трафик, байт</th><th>Трафик, пакетов</th></tr>
+<tr><th colspan=2>За 3 часа</th></tr>
+<tr><td>
+<RRD::GRAPH ../png/snmp-bytes-hour.png --lazy
+      -s -3hour
+      --imginfo '<IMG SRC=/png/%s WIDTH=%lu HEIGHT=%lu >'
+      DEF:In=/var/www/stat/snmp.rrd:ifInOctets:AVERAGE
+      DEF:Out=/var/www/stat/snmp.rrd:ifOutOctets:AVERAGE
+      LINE2:In#00a000:"In"
+      LINE2:Out#a00000:"Out">
+</td><td>
+<RRD::GRAPH ../png/snmp-pkts-hour.png --lazy
+      -s -3hour
+      --imginfo '<IMG SRC=/png/%s WIDTH=%lu HEIGHT=%lu >'
+      DEF:In=/var/www/stat/snmp.rrd:ifInUcastPkts:AVERAGE
+      DEF:Out=/var/www/stat/snmp.rrd:ifOutUcastPkts:AVERAGE
+      LINE2:In#00a000:"In"
+      LINE2:Out#a00000:"Out">
+</td></tr>
+
+<tr><th colspan=2>За день</th></tr>
+<tr><td>
+<RRD::GRAPH ../png/snmp-bytes-day.png --lazy
+      -s -1day
+      --imginfo '<IMG SRC=/png/%s WIDTH=%lu HEIGHT=%lu >'
+      DEF:In=/var/www/stat/snmp.rrd:ifInOctets:AVERAGE
+      DEF:Out=/var/www/stat/snmp.rrd:ifOutOctets:AVERAGE
+      LINE2:In#00a000:"In"
+      LINE2:Out#a00000:"Out">
+</td><td>
+<RRD::GRAPH ../png/snmp-pkts-day.png --lazy
+      -s -1day
+      --imginfo '<IMG SRC=/png/%s WIDTH=%lu HEIGHT=%lu >'
+      DEF:In=/var/www/stat/snmp.rrd:ifInUcastPkts:AVERAGE
+      DEF:Out=/var/www/stat/snmp.rrd:ifOutUcastPkts:AVERAGE
+      LINE2:In#00a000:"In"
+      LINE2:Out#a00000:"Out">
+</td></tr>
+
+<tr><th colspan=2>За неделю</th></tr>
+<tr><td>
+<RRD::GRAPH ../png/snmp-bytes-week.png --lazy
+      -s -1week
+      --imginfo '<IMG SRC=/png/%s WIDTH=%lu HEIGHT=%lu >'
+      DEF:In=/var/www/stat/snmp.rrd:ifInOctets:AVERAGE
+      DEF:Out=/var/www/stat/snmp.rrd:ifOutOctets:AVERAGE
+      LINE2:In#00a000:"In"
+      LINE2:Out#a00000:"Out">
+</td><td>
+<RRD::GRAPH ../png/snmp-pkts-week.png --lazy
+      -s -1week
+      --imginfo '<IMG SRC=/png/%s WIDTH=%lu HEIGHT=%lu >'
+      DEF:In=/var/www/stat/snmp.rrd:ifInUcastPkts:AVERAGE
+      DEF:Out=/var/www/stat/snmp.rrd:ifOutUcastPkts:AVERAGE
+      LINE2:In#00a000:"In"
+      LINE2:Out#a00000:"Out">
+</td></tr>
+
+<tr><th colspan=2>За месяц</th></tr>
+<tr><td>
+<RRD::GRAPH ../png/snmp-bytes-month.png --lazy
+      -s -1month
+      --imginfo '<IMG SRC=/png/%s WIDTH=%lu HEIGHT=%lu >'
+      DEF:In=/var/www/stat/snmp.rrd:ifInOctets:AVERAGE
+      DEF:Out=/var/www/stat/snmp.rrd:ifOutOctets:AVERAGE
+      LINE2:In#00a000:"In"
+      LINE2:Out#a00000:"Out">
+</td><td>
+<RRD::GRAPH ../png/snmp-pkts-month.png --lazy
+      -s -1month
+      --imginfo '<IMG SRC=/png/%s WIDTH=%lu HEIGHT=%lu >'
+      DEF:In=/var/www/stat/snmp.rrd:ifInUcastPkts:AVERAGE
+      DEF:Out=/var/www/stat/snmp.rrd:ifOutUcastPkts:AVERAGE
+      LINE2:In#00a000:"In"
+      LINE2:Out#a00000:"Out">
+</td></tr>
+
+<tr><th colspan=2>За год</th></tr>
+<tr><td>
+<RRD::GRAPH ../png/snmp-bytes-year.png --lazy
+      -s -1year
+      --imginfo '<IMG SRC=/png/%s WIDTH=%lu HEIGHT=%lu >'
+      DEF:In=/var/www/stat/snmp.rrd:ifInOctets:AVERAGE
+      DEF:Out=/var/www/stat/snmp.rrd:ifOutOctets:AVERAGE
+      LINE2:In#00a000:"In"
+      LINE2:Out#a00000:"Out">
+</td><td>
+<RRD::GRAPH ../png/snmp-pkts-year.png --lazy
+      -s -1year
+      --imginfo '<IMG SRC=/png/%s WIDTH=%lu HEIGHT=%lu >'
+      DEF:In=/var/www/stat/snmp.rrd:ifInUcastPkts:AVERAGE
+      DEF:Out=/var/www/stat/snmp.rrd:ifOutUcastPkts:AVERAGE
+      LINE2:In#00a000:"In"
+      LINE2:Out#a00000:"Out">
+</td></tr>
+</table>
+</body>
+</html>

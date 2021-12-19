@@ -1,0 +1,99 @@
+#!/usr/bin/rrdcgi
+<html>
+<head>
+<title>Current statistic</title>
+<meta http-equiv="Refresh" content="60">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Cache-Control" content="no-cache">
+</head>
+<body>
+<h2>Текущая статистика:</h2>
+<table>
+<tr><th>Трафик, байт</th><th>Число процессов в системе</th></tr>
+<tr><th colspan=2>За 3 часа</th></tr>
+<tr><td>
+<RRD::GRAPH ../png/local-bytes-hour.png --lazy
+      -s -3hour
+      --imginfo '<IMG SRC=/png/%s WIDTH=%lu HEIGHT=%lu >'
+      DEF:RX=/var/www/stat/local.rrd:RX:AVERAGE
+      DEF:TX=/var/www/stat/local.rrd:TX:AVERAGE
+      LINE2:RX#00a000:"RX"
+      LINE2:TX#a00000:"TX">
+</td><td>
+<RRD::GRAPH ../png/local-procs-hour.png --lazy
+      -s -3hour
+      --imginfo '<IMG SRC=/png/%s WIDTH=%lu HEIGHT=%lu >'
+      DEF:procs=/var/www/stat/local.rrd:procs:AVERAGE
+      LINE2:procs#00a000:"Processes">
+</td></tr>
+
+<tr><th colspan=2>За день</th></tr>
+<tr><td>
+<RRD::GRAPH ../png/local-bytes-day.png --lazy
+      -s -1day
+      --imginfo '<IMG SRC=/png/%s WIDTH=%lu HEIGHT=%lu >'
+      DEF:RX=/var/www/stat/local.rrd:RX:AVERAGE
+      DEF:TX=/var/www/stat/local.rrd:TX:AVERAGE
+      LINE2:RX#00a000:"RX"
+      LINE2:TX#a00000:"TX">
+</td><td>
+<RRD::GRAPH ../png/local-procs-day.png --lazy
+      -s -1day
+      --imginfo '<IMG SRC=/png/%s WIDTH=%lu HEIGHT=%lu >'
+      DEF:procs=/var/www//stat/local.rrd:procs:AVERAGE
+      LINE2:procs#00a000:"Processes">
+</td></tr>
+
+<tr><th colspan=2>За неделю</th></tr>
+<tr><td>
+<RRD::GRAPH ../png/local-bytes-week.png --lazy
+      -s -1week
+      --imginfo '<IMG SRC=/png/%s WIDTH=%lu HEIGHT=%lu >'
+      DEF:RX=/var/www//stat/local.rrd:RX:AVERAGE
+      DEF:TX=/var/www//stat/local.rrd:TX:AVERAGE
+      LINE2:RX#00a000:"RX"
+      LINE2:TX#a00000:"TX">
+</td><td>
+<RRD::GRAPH ../png/local-procs-week.png --lazy
+      -s -1week
+      --imginfo '<IMG SRC=/png/%s WIDTH=%lu HEIGHT=%lu >'
+      DEF:procs=/var/www/stat/local.rrd:procs:AVERAGE
+      LINE2:procs#00a000:"Processes">
+</td></tr>
+
+<tr><th colspan=2>За месяц</th></tr>
+<tr><td>
+<RRD::GRAPH ../png/local-bytes-month.png --lazy
+      -s -1month
+      --imginfo '<IMG SRC=/png/%s WIDTH=%lu HEIGHT=%lu >'
+      DEF:RX=/var/www//stat/local.rrd:RX:AVERAGE
+      DEF:TX=/var/www//stat/local.rrd:TX:AVERAGE
+      LINE2:RX#00a000:"RX"
+      LINE2:TX#a00000:"TX">
+</td><td>
+<RRD::GRAPH ../png/local-procs-month.png --lazy
+      -s -1month
+      --imginfo '<IMG SRC=/png/%s WIDTH=%lu HEIGHT=%lu >'
+      DEF:procs=/var/www//stat/local.rrd:procs:AVERAGE
+      LINE2:procs#a00000:"Processes">
+</td></tr>
+
+<tr><th colspan=2>За год</th></tr>
+<tr><td>
+<RRD::GRAPH ../png/local-bytes-year.png --lazy
+      -s -1year
+      --imginfo '<IMG SRC=/png/%s WIDTH=%lu HEIGHT=%lu >'
+      DEF:RX=/var/www/stat/local.rrd:RX:AVERAGE
+      DEF:TX=/var/www/stat/local.rrd:TX:AVERAGE
+      LINE2:RX#00a000:"RX"
+      LINE2:TX#a00000:"TX">
+</td><td>
+<RRD::GRAPH ../png/local-procs-year.png --lazy
+      -s -1year
+      --imginfo '<IMG SRC=/png/%s WIDTH=%lu HEIGHT=%lu >'
+      DEF:procs=/var/www/stat/local.rrd:procs:AVERAGE
+      LINE2:procs#a00000:"Processes">
+</td></tr>
+</table>
+</body>
+</html>
